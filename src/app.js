@@ -13,7 +13,7 @@ connectDB();
 app.use(express.json());
 app.use(fileUpload());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors({ origin: '*' }));
 
 app.use('/api/v1/notes', require('./routes/note.routes'));
 app.use('/api/v1/upload', require('./routes/upload.routes'));
