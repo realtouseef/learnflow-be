@@ -51,6 +51,10 @@ const NoteSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  semester:{
+    type: String,
+    required: [true, 'Semester is required']
+  },
   tier: {
     type: String,
     enum: ['free', 'premium', 'elite'],

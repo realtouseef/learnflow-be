@@ -17,6 +17,7 @@ app.use(cors({ origin: '*' }));
 
 app.use('/api/v1/notes', require('./routes/note.routes'));
 app.use('/api/v1/upload', require('./routes/upload.routes'));
+app.use('/api/v1/auth', require('./routes/auth.routes'));
 
 
 // Health Check

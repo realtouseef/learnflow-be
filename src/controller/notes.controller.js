@@ -29,3 +29,28 @@ exports.getAllNotes = async (req, res) => {
     res.status(500).json({ success: false, error: 'Failed to fetch notes' });
   }
 };
+
+// GET /api/v1/notes/filter
+exports.getFilteredNotes = async (req, res) => {
+  try {
+    const { department, subject, semester } = req.query;
+
+    const filter = {};
+    if (department) filter.department = department;
+    if (subject) filter.subject = subject;
+    if (semester) filter.semester = semester;
+
+    const notes = await Note.find(filter).sort({ createdAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      data: notes,
+    });
+  } catch (error) {
+    console.error('Error fetching filtered notes:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch notes',
+    });
+  }
+};
